@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title> Mini-projeto </title>
+</head>
+
+<body>
+    <script>
+        var produto = [];
+        var resp;
+        do {
+            resp = prompt("1-adicionar \n 2-buscar \n 3-atualizar \n 4-remover \n 5-sair");
+            if (resp == 1) {
+                const codigo = prompt("Insira o codigo do produto: ");
+                const nome = prompt("Insira o nome do produto: ");
+                const valor = prompt("Insira o valor do produto: ");
+                const descricao = prompt("Insira a descricao do produto: ");
+                produto.push({ codigo, nome, valor, descricao });
+            } else if (resp == 2) {
+                const busca = prompt("Insira o codigo para busca: ");
+                produto.forEach(item => {
+                    if (item.codigo.includes(busca)) {
+                        alert(`${item.codigo}/${item.nome}/${item.valor}/${item.descricao}`)
+                    } 
+                });
+            } else if (resp == 3) {
+                const atualizar = prompt("Insira o codigo do produto para atualização: ");
+                produto.forEach(item => {
+                    if (item.codigo.includes(atualizar)) {
+                        const tipo = prompt("Insira o que você deseja atualizar: ");
+                        if (tipo == 'nome') {
+                            const nome = prompt("Insira o nome do produto: ");
+                            item.nome = nome
+                            alert(`Atualização concluida com sucesso, o novo nome é: ${item.nome}`)
+                        } else if (tipo == 'valor') {
+                            const valor = prompt("Insira o valor do produto: ");
+                            item.valor = valor
+                            alert(`Atualização concluida com sucesso, o novo valor é: ${item.valor}`)
+                        } else if (tipo == 'descricao') {
+                            const descricao = prompt("Insira a descricao do produto: ");
+                            item.descricao = descricao
+                            alert(`Atualização concluida com sucesso, a nova descrição é: ${item.descricao}`)
+                        }
+                    }
+                });
+            } else if (resp == 4) {
+                const deletar = prompt("Digite o codigo do produto que você deseja apagar: ");
+                produto.forEach(item => {
+                    if (item.codigo.includes(deletar)) {
+                        const confirme = prompt("Deseja deletar o produto? ");
+                        if (confirme == 'sim') {
+                            produto = produto.filter(produto => produto.codigo !== deletar);
+                            alert("Produto deletado!")
+                        }
+                        else if (confirme == 'nao') {
+                            alert("Produto não deletado!")
+                        }
+                    }
+                })
+            }
+        } while (resp != 5)
+
+    </script>
+</body>
+
+</html>
