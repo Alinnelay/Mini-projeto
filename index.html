@@ -10,21 +10,26 @@
         var produto = [];
         var resp;
         do {
-            resp = prompt("1-adicionar \n 2-buscar \n 3-atualizar \n 4-remover \n 5-sair");
+            resp = prompt("1-adicionar \n 2-buscar \n 3-atualizar \n 4-Visualizar todos \n 5-remover \n 6-sair");
+            /*Adicionar produto*/
             if (resp == 1) {
                 const codigo = prompt("Insira o codigo do produto: ");
                 const nome = prompt("Insira o nome do produto: ");
                 const valor = prompt("Insira o valor do produto: ");
                 const descricao = prompt("Insira a descricao do produto: ");
                 produto.push({ codigo, nome, valor, descricao });
-            } else if (resp == 2) {
+            } 
+            /* Buscar produto*/
+            else if (resp == 2) {
                 const busca = prompt("Insira o codigo para busca: ");
                 produto.forEach(item => {
                     if (item.codigo.includes(busca)) {
                         alert(`${item.codigo}/${item.nome}/${item.valor}/${item.descricao}`)
                     } 
                 });
-            } else if (resp == 3) {
+            } 
+            /* Atualizar produto */
+            else if (resp == 3) {
                 const atualizar = prompt("Insira o codigo do produto para atualização: ");
                 produto.forEach(item => {
                     if (item.codigo.includes(atualizar)) {
@@ -44,22 +49,32 @@
                         }
                     }
                 });
-            } else if (resp == 4) {
+            } 
+            /* Visualizar todos os produtos */
+            else if (resp == 4) {
+                let Visualizar = '';
+                produto.forEach(item => {
+                    Visualizar += `Codigo: ${item.codigo}, Nome: ${item.nome}, Valor: ${item.valor}, Descricao: ${item.descricao} \n`
+                });
+                alert(Visualizar);
+            }
+            /* Deletar produto */
+            else if (resp == 5) {
                 const deletar = prompt("Digite o codigo do produto que você deseja apagar: ");
                 produto.forEach(item => {
                     if (item.codigo.includes(deletar)) {
                         const confirme = prompt("Deseja deletar o produto? ");
-                        if (confirme == 'sim') {
+                        if (confirme == 'sim' || confirme == 'Sim') {
                             produto = produto.filter(produto => produto.codigo !== deletar);
                             alert("Produto deletado!")
                         }
-                        else if (confirme == 'nao') {
+                        else if (confirme == 'não' || confirme == 'Não') {
                             alert("Produto não deletado!")
                         }
                     }
                 })
             }
-        } while (resp != 5)
+        } while (resp != 6)
 
     </script>
 </body>
